@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("static/index.jpg");
+
+    }
+
+    #form-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color:#e9e1e1;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #register-btn,
+    #login-btn {
+      background-color: #7c0404;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    #register-btn i,
+    #login-btn i {
+      margin-right: 5px;
+    }
+
+    #register-form,
+    #login-form {
+      display: none;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #e6ebee;
+      background-color: #7c0404;
+      padding: 5px 10px;
+      border: 1px solid #3498db;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .back-button i {
+      margin-right: 5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="submit"],
+    button[type="submit"] {
+      background-color: #7c0404;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .back-button:hover {
+      background-color: #0057b3;
+  }
+  button[type="submit"]:hover,input[type="submit"]:hover {
+    background-color: #0057b3;
+  }
+  #register-btn:hover,#login-btn:hover{
+    background-color: #0057b3;
+
+  }
+  h1{
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 30px;
+    font-style: italic;
+    color: #0057b3;
+  }
+
+  p{
+    font-family:'Times New Roman', Times, serif;
+    font-weight: bold;
+    font-size: 30px;
+    font-style: italic;
+    color: #030a13;
+  }
+  
+  </style>
+
+  <!-- Include FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <a href="/index" class="back-button">
+    <i class="fas fa-arrow-left"></i> Back
+  </a>
+
+  <div id="form-container">
+    <center>
+      <h1>Patient</h1>
+    <button id="register-btn" onclick="showRegisterForm()">
+      <i class="fas fa-user-plus"></i> Register
+    </button>
+    <button id="login-btn" onclick="showLoginForm()">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+  </center>
+
+
+    <form action="/patient_details" method="post" id="register-form">
+      <p>Register</p>
+      <label><i class="fas fa-user"></i> Patient Name:</label>
+      <input type="text" name="patient_name">
+      <label><i class="fas fa-id-card"></i> Patient ID:</label>
+      <input type="number" name="patient_ID">
+      <label><i class="fas fa-calendar"></i> Age:</label>
+      <input type="text" name="age">
+      <label><i class="fas fa-map-marker-alt"></i> Address:</label>
+      <input type="text" name="address">
+      <label><i class="fas fa-envelope"></i> E-mail:</label>
+      <input type="text" name="d_email">
+      <label><i class="fas fa-lock"></i> Password:</label>
+      <input type="password" name="password">
+      <input type="submit" value="Register">
+    </form>
+    
+    <form method="post" action="/patient_login" id="login-form" class="login-form">
+      <p>Login</p>
+      <label for="patient_ID"><i class="fas fa-id-card"></i> Patient ID:</label>
+      <input type="text" name="patient_ID" required>
+      <label for="password"><i class="fas fa-lock"></i> Password:</label>
+      <input type="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    function showRegisterForm() {
+      document.getElementById('register-form').style.display = 'block';
+      document.getElementById('login-form').style.display = 'none';
+    }
+
+    function showLoginForm() {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('register-form').style.display = 'none';
+    }
+  </script>
+</body>
+</html>

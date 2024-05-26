@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image: url("static/index.jpg");
+    }
+
+    #form-container {
+      max-width: 400px;
+      margin: 50px auto;
+      background-color: #e9e1e1;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #register-btn,
+    #login-btn {
+      background-color: #7c0404;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    #register-btn i,
+    #login-btn i {
+      margin-right: 5px;
+    }
+
+    #register-form,
+    #login-form {
+      display: none;
+    }
+
+    button {
+      display: inline-block;
+      margin-bottom: 10px;
+      text-decoration: none;
+      color: #e6ebee;
+      background-color: #7c0404;
+      padding: 10px 15px;
+      border: 1px solid #3498db;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .back-button i {
+      margin-right: 5px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="submit"],
+    button[type="submit"] {
+      background-color: #7c0404;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .back-button:hover {
+      background-color: #0057b3;
+  }
+  #register-btn:hover,#login-btn:hover{
+    background-color: #0057b3;
+
+  }
+  button[type="submit"]:hover,input[type="submit"]:hover {
+    background-color: #0057b3;
+  }
+  .back-button:hover {
+    background-color: #0057b3;
+}
+button[type="submit"]:hover,input[type="submit"]:hover {
+  background-color: #0057b3;
+}
+#register-btn:hover,#login-btn:hover{
+  background-color: #0057b3;
+}
+button:hover{
+  background-color: #0057b3;
+
+}
+h1{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: italic;
+  color: #0057b3;
+}
+
+p{
+  font-family:'Times New Roman', Times, serif;
+  font-weight: bold;
+  font-size: 30px;
+  font-style: italic;
+  color: #030a13;
+}
+  </style>
+
+  <!-- Include FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+  <button onclick="goBack()"><i class="fas fa-arrow-left"></i>Back </i> </button>
+   
+  </a>
+
+  <div id="form-container">
+    <center>
+      
+    <h1> Seller</h1>
+    <button id="register-btn" onclick="showRegisterForm()">
+      <i class="fas fa-user-plus"></i> Register
+    </button>
+    <button id="login-btn" onclick="showLoginForm()">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+  </center>
+
+    <form action="/seller_details" method="post" id="register-form">
+      <p>Register</p>
+      <label><i class="fas fa-clinic-medical"></i> seller Name:</label>
+      <input type="text" name="sellername">
+      <label for="sellertype">
+        <i class="fas fa-clinic-medical"></i> Seller Type:
+    </label>
+    <select name="sellertype" id="sellertype">
+        <option value="A1"><i class="fas fa-pills"></i> A1-Capsules </option>
+        <option value="A2"><i class="fas fa-ointment"></i> A2-Topical Medicines </option>
+        <option value="A3"><i class="fas fa-eye-dropper"></i> A3-Drops </option>
+        <option value="A4"><i class="fas fa-hospital"></i> A4-Inhalers </option>
+        <option value="A5"><i class="fas fa-syringe"></i> A5-Injections </option>
+    </select>
+    
+
+          
+      </select><br><br>
+      <label><i class="fas fa-id-card"></i> Business ID:</label>
+      <input type="text" name="busiess_ID">
+      <label><i class="fas fa-mobile-alt"></i> Mobile No:</label>
+      <input type="text" name="mobile_no">
+      <label><i class="fas fa-envelope"></i> Email:</label>
+      <input type="text" name="email">
+      <label><i class="fas fa-id-card"></i> PAN:</label>
+      <input type="text" name="pan">
+      <label><i class="fas fa-id-card"></i> GST:</label>
+      <input type="text" name="gst">
+      <label><i class="fas fa-lock"></i> Password:</label>
+      <input type="password" name="password">
+      <input type="submit" value="Register">
+    </form>
+    
+    <form method="post" action="/seller_login" id="login-form" class="login-form">
+      <p>Login</p>
+      <label for="business_ID"><i class="fas fa-id-card"></i> Business ID:</label>
+      <input type="text" name="busiess_ID" required>
+      <label for="password"><i class="fas fa-lock"></i> Password:</label>
+      <input type="password" name="password" required>
+      <button type="submit">Login</button>
+    </form>
+
+  </div>
+
+  <script>
+    function showRegisterForm() {
+      document.getElementById('register-form').style.display = 'block';
+      document.getElementById('login-form').style.display = 'none';
+    }
+
+    function showLoginForm() {
+      document.getElementById('login-form').style.display = 'block';
+      document.getElementById('register-form').style.display = 'none';
+    }
+  </script>
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>adminlogin</title>
+    <style>
+        body {
+            background-image: url('static/index.jpg'); /* Replace with your background image URL */
+            background-size: cover;
+            background-repeat: no-repeat;
+            color: #030202; /* White text color */
+        }
+
+        p {
+            font-size: 40px;
+            font-weight: bolder;
+            color: #080707;
+        }
+
+        .table-cell,
+        .table-cell1 {
+            padding: 35px;
+            border: 1px solid #fc0b0b;
+            text-align: center;
+        }
+
+        .table-cell1 {
+            color: #7c0404;
+        }
+
+        .image-cell img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .file-cell a {
+            color: blue;
+            text-decoration: underline;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(241, 69, 17, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 800px;
+        }
+
+        .modal-content img {
+            width: 100%;
+            height: auto;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            color: #fff;
+            background-color:#7c0404;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background-color: #7c0404;
+        }
+
+        header {
+            margin-top: 0%;
+            padding: 1px;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+            color: #fff;
+        }
+
+        .back-button {
+            color: #fff;
+            background-color: #7c0404;
+
+        }
+        .back-button:hover,.btn.btn-success.accept-button:hover {
+            background-color: #0057b3;
+        }
+
+        .btn.btn-success.accept-button {
+            color: #f7f6f6;
+            background-color: #7c0404;
+        }
+        input[type="submit"]{
+            background-color: #7c0404;
+            color: #f7f6f6;
+        }
+        input[type="submit"]:hover{
+            background-color: #0057b3;
+
+        }
+        button{
+            background-color: #7c0404;
+            color:#f7f6f6;
+
+        }
+        button:hover{
+            background-color: #0057b3;
+        }
+        .types p{
+            font-size: 20px;
+            color:#7c0404
+        }
+        .red-text {
+            color: red;
+        }
+    </style>
+</head>
+
+<body class="bg-nav">
+
+
+   <!--- <p>A2-Topical medicines</p>
+    <p>A3-Drops</p>
+    <p>A4-Inhalers</p>
+    <p>A5-Injections</p>-->
+
+
+    <center>
+        <header>
+            <div class="navbar">
+                <button onclick="goBack()"><i class="fas fa-arrow-left"></i>Back </i> </button>
+            </div>
+        </header>
+        <div class="types">
+            <p>
+                <span class="red-text">A1</span>-Capsules,
+                <span class="red-text">A2</span>-Topical medicines,
+                <span class="red-text">A3</span>-Drops,
+                <span class="red-text">A4</span>-Inhalers,
+                <span class="red-text">A5</span>-Injections
+            </p>        </div>
+
+        <p>Choose from the available sellers</p>
+        <form action="/send" method="post">
+            <input type='text' name='number' placeholder='ID NUMBER FOR DOWNLOAD' required>
+            <input type="submit" value="submit">
+        </form><br><br><br>
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <!-- ... (your existing code) ... -->
+
+<th class="table-cell1"><i class="fas fa-id-card"></i> S.No</th>
+<th class="table-cell1"><i class="fas fa-hospital"></i> Seller Name</th>
+<th class="table-cell1"><i class="fas fa-store"></i> Seller Type</th>
+
+<th class="table-cell1"><i class="fas fa-id-card"></i> ID Number</th>
+<th class="table-cell1"><i class="fas fa-mobile-alt"></i> Mobile Number</th>
+<th class="table-cell1"><i class="fas fa-envelope"></i> Email</th>
+<th class="table-cell1"><i class="fas fa-paper-plane"></i> Send</th>
+
+<!-- ... (your existing code) ... -->
+
+                </tr>
+            </thead>    
+        <tbody>
+            {% for item in results %}
+                <tr>
+                    <td class="table-cell">{{ item[0] }}</td>                
+                    <td class="table-cell">{{ item[1] }}</td>
+                    <td class="table-cell">{{ item[2] }}</td>
+                    <td class="table-cell">{{ item[3] }}</td>
+                    <td class="table-cell">{{ item[4] }}</td>
+                    <td class="table-cell">{{ item[5] }}</td>
+
+                    <td class="table-cell">
+                        <button class="btn btn-success accept-button" data-id="{{ item[3] }}">send</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Modal for full-size image preview -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeImageModal()">&times;</span>
+        <div class="modal-content">
+            <img id="fullSizeImage" src="" alt="Full-size Image">
+        </div>
+    </div>
+
+    <script>
+        // JavaScript functions to show and close the image modal
+        function showImage(base64Image) {
+            var fullSizeImage = document.getElementById("fullSizeImage");
+            fullSizeImage.src = "data:image/jpeg;base64," + base64Image;
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "block";
+        
+            // Add an event listener for the "keydown" event to close the modal on "Esc" key press
+            document.addEventListener("keydown", closeImageModalOnEsc);
+        }
+        
+        function closeImageModal() {
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        
+            // Remove the event listener for "Esc" key when the modal is closed
+            document.removeEventListener("keydown", closeImageModalOnEsc);
+        }
+        
+        // Function to close the modal on "Esc" key press
+        function closeImageModalOnEsc(event) {
+            if (event.key === "Escape") {
+                closeImageModal();
+            }
+        }
+        </script>>
+
+
+<!-- Add this script tag to include jQuery -->
+<script>
+    // JavaScript function to handle the click event of the "Accept" button
+    document.addEventListener("DOMContentLoaded", function() {
+        const acceptButtons = document.querySelectorAll(".accept-button");
+        acceptButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                // Retrieve the data-id attribute containing the item ID
+                const itemId = button.getAttribute("data-id");
+
+                // Send a request to your server to retrieve data from the access_table
+                // You can use AJAX, fetch API, or any other method here to retrieve data
+
+                // Once you have the data, populate the input fields or perform actions
+                // For example, if you have an input field with ID "number" to populate:
+                const numberInput = document.querySelector("input[name='number']");
+                numberInput.value = itemId; // Populate the input field with the item ID
+            });
+        });
+    });
+</script>
+
+</center>	
+</body>
+</html>

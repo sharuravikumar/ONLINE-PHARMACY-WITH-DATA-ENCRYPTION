@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Medicines Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-image: url('static/index.jpg'); /* Change to the path of your new background image */
+            background-size: cover;
+            font-family: 'Arial', sans-serif; /* Change to your preferred font-family */
+            color: #333; /* Change to your preferred text color */
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #7c0404;
+            border-radius: 5px;
+        }
+
+        .back-button:hover {
+            background-color: #0057b3;
+        }
+
+        h1 {
+            font-size: 60px; /* Change to your preferred font size */
+            color: #000000; /* Change to your preferred heading color */
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+       
+        .medicine p{
+          color:#7c0404;
+          font-family: 'Times New Roman', Times, serif;
+          font-weight: bold;
+          font-style: italic; /* Change to your preferred font size */
+          font-size: 35px;
+            margin-bottom: 10px;
+        }
+        .doctor p{
+          color:#e2130ca2;
+          font-family: 'Times New Roman', Times, serif;
+          font-weight: bold;
+          font-style: italic; /* Change to your preferred font size */
+          font-size: 35px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <a href="javascript:history.back()" class="back-button"><i class="fas fa-arrow-left"></i> Back</a>
+    <center>
+      
+
+    <h1>Medicines</h1>
+<div class="medicine">
+  
+    <p>{{medicine1}}</p>
+    <p>{{medicine2}}</p>
+    <p>{{medicine3}}</p>
+    <p>{{medicine4}}</p>
+
+  </div>
+  <div class="doctor">
+    <p><span style="color: #f14805;">Doctor email:</span> {{email}}</p>
+  </div>
+  </center>
+
+
+</body>
+
+</html>
